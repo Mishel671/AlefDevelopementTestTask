@@ -14,9 +14,6 @@ interface ImageItemDao {
     @Query("SELECT * FROM photo_list WHERE  imageUrl LIKE  :url ")
     fun getImageItem(url: String): LiveData<ImageItemDbModel>
 
-    @Query("DELETE FROM photo_list")
-    suspend fun deleteShopList()
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertImageList(imageList: List<ImageItemDbModel>)
 }

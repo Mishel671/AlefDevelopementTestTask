@@ -8,8 +8,12 @@ import com.example.alefdevelopementtesttask.domain.GetImageItemListUseCase
 import com.example.alefdevelopementtesttask.domain.GetImageItemUseCase
 import com.example.alefdevelopementtesttask.domain.LoadDataUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ImageListViewModel(application: Application) : AndroidViewModel(application) {
+class ImageListViewModel @Inject constructor(
+    application: Application,
+    repository: ImageRepositoryImpl
+) : AndroidViewModel(application) {
 
     private val repository = ImageRepositoryImpl(application)
 

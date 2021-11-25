@@ -16,12 +16,19 @@ import android.view.WindowManager
 import android.util.DisplayMetrics
 import android.view.WindowMetrics
 import androidx.core.content.getSystemService
+import com.example.alefdevelopementtesttask.ImageApp
 import java.security.AccessController.getContext
+import javax.inject.Inject
 
 
 class ImageListActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ImageListViewModel
+    @Inject
+    lateinit var viewModel: ImageListViewModel
+
+    private val component by lazy {
+        (application as ImageApp).component
+    }
 
     private val binding by lazy {
         ActivityImageListBinding.inflate(layoutInflater)
