@@ -4,5 +4,5 @@ class GetImageItemUseCase(
     private val repository: ImageRepository
 ) {
 
-    operator fun invoke(id: Int) = repository.getImageItem(id)
+    operator fun invoke(url: String) = repository.getImageItem(url)
 }

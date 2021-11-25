@@ -6,7 +6,7 @@ interface ImageRepository {
 
     fun getImageItemList(): LiveData<List<ImageItem>>
 
-    fun getImageItem(id: Int): LiveData<ImageItem>
+    fun getImageItem(url: String): LiveData<ImageItem>
 
     suspend fun loadData()
 }

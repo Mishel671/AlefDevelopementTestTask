@@ -8,12 +8,15 @@ import androidx.room.Query
 
 @Dao
 interface ImageItemDao {
-    @Query("SELECT * FROM photo_list ORDER BY id DESC")
+    @Query("SELECT * FROM photo_list ORDER BY imageUrl DESC")
     fun getImageList(): LiveData<List<ImageItemDbModel>>
 
-    @Query("SELECT * FROM photo_list WHERE id == :id LIMIT 1")
-    fun getImageItem(id: Int): LiveData<ImageItemDbModel>
+    @Query("SELECT * FROM photo_list WHERE  imageUrl LIKE  :url ")
+    fun getImageItem(url: String): LiveData<ImageItemDbModel>
+
+    @Query("DELETE FROM photo_list")
+    suspend fun deleteShopList()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPriceList(priceList: List<ImageItemDbModel>)
+    suspend fun insertImageList(imageList: List<ImageItemDbModel>)
 }

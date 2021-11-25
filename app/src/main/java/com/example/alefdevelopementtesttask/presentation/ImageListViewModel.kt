@@ -14,16 +14,16 @@ class ImageListViewModel(application: Application) : AndroidViewModel(applicatio
     private val repository = ImageRepositoryImpl(application)
 
     private val getImageItemListUseCase = GetImageItemListUseCase(repository)
-    private val getImageItemUseCase = GetImageItemUseCase(repository)
     private val loadDataUseCase = LoadDataUseCase(repository)
 
     val imageItemList = getImageItemListUseCase()
 
-    fun getDetailInfo(id: Int) = getImageItemUseCase(id)
-
-    init {
+    fun loadData(){
         viewModelScope.launch {
             loadDataUseCase()
         }
+    }
+    init {
+        loadData()
     }
 }
