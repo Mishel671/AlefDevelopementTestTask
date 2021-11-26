@@ -85,15 +85,24 @@ class ImageListActivity : AppCompatActivity() {
     }
 
     private fun displayMetrics(): Int {
-        val width = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            this.windowManager.currentWindowMetrics.bounds.width()
+        val width: Int
+        val height: Int
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val displaySize = this.windowManager.currentWindowMetrics.bounds
+            width = displaySize.width()
+            height = displaySize.height()
         } else {
             val display = windowManager.defaultDisplay
             val size = Point()
             display.getSize(size)
-            size.x
+            width = size.x
+            height = size.y
         }
-        return pxToDp(width)
+        return if (isOnePaneMode()){
+            pxToDp(width)
+        } else{
+            pxToDp(height)
+        }
     }
 
     private fun pxToDp(px: Int): Int {
